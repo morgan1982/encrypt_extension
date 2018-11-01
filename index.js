@@ -28,14 +28,18 @@ chrome.runtime.sendMessage("hello from context");
 // 	file: './aes.js'
 // })
 chrome.browserAction.onClicked.addListener(function (tab) {
+
+	alert("--inside the script loader");
     executeScripts(null, [
         { file: "./core.js" },
         { file: "./aes.js" }
     ])
+
+	alert(CryptoJS.AES);
+
 });
 
 
-alert(CryptoJS.AES);
 
 // function hello() {
 //   chrome.tabs.executeScript({
