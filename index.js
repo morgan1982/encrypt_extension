@@ -23,12 +23,19 @@ chrome.runtime.sendMessage("hello from context");
 
 
 // runs normally!
-chrome.tabs.executeScript({
-	// file: './js/test.js'
-	file: ./aes.js
-})
+// chrome.tabs.executeScript({
+// 	// file: './js/test.js'
+// 	file: './aes.js'
+// })
+chrome.browserAction.onClicked.addListener(function (tab) {
+    executeScripts(null, [
+        { file: "./core.js" },
+        { file: "./aes.js" }
+    ])
+});
 
-alert()
+
+alert(CryptoJS.AES);
 
 // function hello() {
 //   chrome.tabs.executeScript({
