@@ -4,14 +4,13 @@
 // 	})
 // })
 console.log("test")
-console.log(crypto)
 
-function parseDom(domcnt) {
-	console.log(domcnt)
-}
+// console.log(CryptoJS.AES);
 
+let message = "how are you?"
+let key = "rooster"
 
-chrome.browserAction.onClicked.addListener(() => {
-	console.log("clicked")
-	chrome.tabs.sendMessage({ text: "report_back" }, parseDom)
-})
+let cipherText = CryptoJS.AES.encrypt(message, key);
+
+console.log(cipherText);
+

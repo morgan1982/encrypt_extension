@@ -1,20 +1,28 @@
 {
 	"manifest_version": 2,
-	"name": "Launcher",
+	"name": "Decoder Encoder",
 	"description": "encoder-decoder using crypto.js",
 	"version": "1.0.0",
 	"icons": {
-		"128": "/icons/128.png",
-		"48": "/icons/48.png",
-		"24": "/icons/24.png"
+		"128": "key128.png",
+		"48": "key48.png",
+		"24": "key24.png"
 	},
 	"browser_action": {
-		"default_icon": "/icons/default.png",
+		"default_icon": "key128.png",
 		"default_popup": "popup.html",
 		"default_title": "decoder"
 	},
 	"background": {
-		"scripts": ["background.js"],
+		"scripts": [
+			"core.js",
+			"md5.js",
+			"evpkdf.js",
+			"x64-core.js",
+			"cipher-core.js",
+			"aes.js",
+			"background.js"
+		],
 		"persistent": false
 	},
 	"content_scripts": [
