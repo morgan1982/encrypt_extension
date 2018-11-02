@@ -19,6 +19,7 @@
 			"md5.js",
 			"evpkdf.js",
 			"x64-core.js",
+			"enc-base64.js",
 			"cipher-core.js",
 			"aes.js",
 			"background.js"
