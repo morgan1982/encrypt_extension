@@ -28,7 +28,7 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["*://*/*"],
+			"matches": ["*://crm.irepair.gr/*"],
 			"js": ["content.js"]
 		}
 	],

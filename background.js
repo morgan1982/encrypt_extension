@@ -20,3 +20,18 @@ let originalText = bytes.toString(CryptoJS.enc.Utf8);
 console.log(cipherText, "\n");
 console.log(originalText);
 
+
+let contentTabId;
+
+chrome.runtime.onMessage.addListener(function(msg, sender) {
+
+	if (msg.from == "content") {
+			// crm id
+		contentTabId = sender.tab.id
+
+		chrome.tabs.sendMessage(contentTabId, {
+			from: "background",
+			encodedString: cipherText
+		})
+	}
+})
