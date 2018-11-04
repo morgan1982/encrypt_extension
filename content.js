@@ -5,8 +5,14 @@ chrome.runtime.sendMessage({ from: "content" });
 
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
 
-	if (msg.text === "report_back") {
-		console.log("message send to content")
+	if (msg.job === "encoding") {
+		console.log("message send to content from back: ", msg.cipher);
+		
+		let { cipher } = msg;
+		let res = document.getElementById('resolution');
+		let encryptedText = ` \n\n "dont delete this line"\n ${ cipher } `
+
+		res.value += encryptedText;
 	}
 } )
 

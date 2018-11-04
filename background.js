@@ -1,41 +1,41 @@
-// chrome.runtime.onInstalled.addListener( () => {
-// 	chrome.storage.sync.set({ color: "#3aa757" }, () => {
+const key = "rooster"
 
-// 	})
-// })
-
-let message = "how are you?"
-let key = "rooster"
-
-// Encrypt
-let cipherText = CryptoJS.AES.encrypt(message, key).toString();
 
 //Decrypt
-let bytes = CryptoJS.AES.decrypt(cipherText, key);
-let originalText = bytes.toString(CryptoJS.enc.Utf8);
-
-console.log(cipherText, "\n");
-console.log(originalText);
+// let bytes = CryptoJS.AES.decrypt(cipherText, key);
+// let originalText = bytes.toString(CryptoJS.enc.Utf8);
 
 
-let contentTabId;
 
-chrome.runtime.onMessage.addListener(function(msg, sender) {
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
-	if (msg.from == "content") {
-			// crm id
-		contentTabId = sender.tab.id
+	if (request.source === "encoder") {
 
-		chrome.tabs.sendMessage(contentTabId, {
-			from: "background",
-			encodedString: cipherText
+		let supplierStr = request.supplier;
+		console.log(`supllier source: ${ supplierStr }`);
+		// encode the text
+		let cipher = CryptoJS.AES.encrypt(supplierStr, key).toString();
+		console.log(`encryptedText: ${ cipher }`);
+
+		chrome.tabs.query({ active:true, currentWindow: true }, (tabs) => {
+
+			let message = {
+				job: "encoding",
+				source: "background",
+				cipher 
+			}
+
+			chrome.tabs.sendMessage(tabs[0].id, message, (response) => {
+
+			})
 		})
+
 	}
 })
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
-	if (request.message === "for encode") {
+	if (request.source === "encoder") {
 		console.log("from encode")
 		sendResponse({message: "from the abbys"})
 	}

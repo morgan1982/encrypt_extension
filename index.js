@@ -11,13 +11,18 @@ console.log(decode);
 function getValue() {
 	let box = document.querySelector('#select');
 	let value = box.options[box.selectedIndex].text;
-	console.log(value);	
+	return value
 }
 
 
 encode.addEventListener('click', () => {
-	getValue();
-	chrome.runtime.sendMessage({message: "for encode"}, (response) => {
+	let supplier= getValue();
+
+	let message = {
+		source: "encoder",
+		supplier 
+	}
+	chrome.runtime.sendMessage(message, (response) => {
 		console.log(response.message);
 	})
 })
