@@ -3,9 +3,6 @@
 
 // 	})
 // })
-console.log("test")
-
-// console.log(CryptoJS.AES);
 
 let message = "how are you?"
 let key = "rooster"
@@ -33,5 +30,17 @@ chrome.runtime.onMessage.addListener(function(msg, sender) {
 			from: "background",
 			encodedString: cipherText
 		})
+	}
+})
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+
+	if (request.message === "for encode") {
+		console.log("from encode")
+		sendResponse({message: "from the abbys"})
+	}
+	if (request.message === "for decode") {
+		console.log("from decode")
+		sendResponse({message: "from the abbys"})
 	}
 })

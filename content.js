@@ -13,8 +13,9 @@ chrome.runtime.onMessage.addListener((msg, sender, response) => {
 chrome.runtime.onMessage.addListener((msg, sender, response) => {
 	if (msg.from === "background") {
 
+		console.log(msg.encodedString);
 		let res = document.getElementsByName("resolution");
-		console.log("res", res);
-		res.innerHTML += msg.encodedString;
+		// console.log("res", res);
+		// res.innerHTML += msg.encodedString;
 	}
 })
