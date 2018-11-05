@@ -1,4 +1,10 @@
+// test the animation
 
+
+// btn.addEventListener('click', () => {
+// 		console.log("done");
+// 		container.className += ' active';
+// })
 
 // message passing
 console.log("popup")
@@ -36,11 +42,14 @@ decode.addEventListener('click', () => {
 	}
 
 	chrome.runtime.sendMessage(message, (response) => {
-
+		
+		let container = document.querySelector('.supplier-container');
+		let supplierText = document.querySelector('.supplier');
 		let { supplier } = response;
+
 		console.log(`the suplier came: ${ supplier }`)
+		supplierText.innerHTML = supplier;
+		container.className += " active"
 
-
-		// document.querySelector(".sypplier-container").classList.toggle(active)
 	})
 })
