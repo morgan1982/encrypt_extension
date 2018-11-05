@@ -14,7 +14,7 @@ function getValue() {
 	return value
 }
 
-
+// encoding button
 encode.addEventListener('click', () => {
 	let supplier= getValue();
 
@@ -23,12 +23,24 @@ encode.addEventListener('click', () => {
 		supplier 
 	}
 	chrome.runtime.sendMessage(message, (response) => {
-		console.log(response.message);
+		// console.log(response.message);
 	})
 })
 
+
+// decoding button
 decode.addEventListener('click', () => {
-	chrome.runtime.sendMessage({message: "for decode"}, (response) => {
-		console.log(response.message);
+
+	let message = {
+		source: "decoder"
+	}
+
+	chrome.runtime.sendMessage(message, (response) => {
+
+		let { supplier } = response;
+		console.log(`the suplier came: ${ supplier }`)
+
+
+		// document.querySelector(".sypplier-container").classList.toggle(active)
 	})
 })

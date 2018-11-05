@@ -1,27 +1,42 @@
 console.log("-- inside content -- ");
 
+let res = document.getElementById('resolution');
+
 
 chrome.runtime.sendMessage({ from: "content" });
 
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
 	if (msg.job === "encoding") {
 		console.log("message send to content from back: ", msg.cipher);
 		
 		let { cipher } = msg;
-		let res = document.getElementById('resolution');
 		let encryptedText = ` \n\n "dont delete this line"\n ${ cipher } `
 
 		res.value += encryptedText;
 	}
-} )
 
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
-	if (msg.from === "background") {
+	if (msg.job === "decoding") {
 
-		console.log(msg.encodedString);
-		let res = document.getElementsByName("resolution");
-		// console.log("res", res);
-		// res.innerHTML += msg.encodedString;
+		let rawStr = res.value;
+
+		function extractSupplier (str) {
+
+			let re = /u2f.*=/gi;
+			let supplierHash = re.exec(str);
+			return supplierHash[0]
+		}
+
+		// extract the hashed string;
+		let hashedStr = extractSupplier(rawStr);
+		console.log(hashedStr);
+
+		sendResponse({
+			source: "irepair_crm",
+			hashedStr
+		})
+
+
 	}
+
 })

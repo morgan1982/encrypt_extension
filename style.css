@@ -103,3 +103,60 @@ body {
 	right: 12px;
 	transform: translateY(-50%);
 }
+
+.supplier-container {
+	/*position: relative;*/
+	position: absolute;
+	top: 24%;
+	z-index: 1;
+	left: 0;
+	/*margin: auto;*/
+	width: 170px;
+	height: 60px;
+	/*bottom: 0;*/
+	background: rgba(161, 216, 209, 0.3);
+	filter: blur(0.6px);
+	box-shadow: 0px 0px 10px #333;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #32567CFF;
+	font-size: 1.3em;
+	border-radius: 0 4px 4px 0;
+}
+
+
+
+
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        transform: translateX(.5rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+
+    80% {
+        transform: translateX(-.5rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
