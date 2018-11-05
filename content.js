@@ -22,7 +22,8 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 			let { cipher } = msg;
 			let encryptedText = ` \n\n "dont delete this line"\n ${ cipher } `
 
-			res.value += encryptedText;			
+			res.value += encryptedText;
+			alert("supplier is encrypted..");		
 		}else {
 			alert("there is a hashed string inside resolution, please use decode.")
 		}
