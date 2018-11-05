@@ -56,14 +56,3 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	return true
 })
 
-// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-
-// 	if (request.source === "encoder") {
-// 		console.log("from encode")
-// 		sendResponse({message: "from the abbys"})
-// 	}
-// 	if (request.message === "for decode") {
-// 		console.log("from decode")
-// 		sendResponse({message: "from the abbys"})
-// 	}
-// })

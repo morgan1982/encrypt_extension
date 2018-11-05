@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
 			res.value += encryptedText;			
 		}else {
-			console.log("there is a hashed string to res")
+			alert("there is a hashed string inside resolution, please use decode.")
 		}
 
 	}
