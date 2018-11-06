@@ -1,4 +1,4 @@
-const key = "rooster"
+const key = keys.decryptionKey;
 
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
@@ -19,7 +19,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			let message = {
 				job: "encoding",
 				source: "background",
-				cipher 
+				cipher
 			}
 
 			chrome.tabs.sendMessage(tabs[0].id, message, (response) => {
