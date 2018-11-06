@@ -1,17 +1,9 @@
-// test the animation
-
-
-// btn.addEventListener('click', () => {
-// 		console.log("done");
-// 		container.className += ' active';
-// })
-
-// message passing
-console.log("popup")
 chrome.runtime.sendMessage("hello from context");
 
 let encode = document.querySelector('.encode');
 let decode = document.querySelector('.decode');
+let container = document.querySelector('.supplier-container');
+
 console.log(decode);
 
 function getValue() {
@@ -26,7 +18,7 @@ encode.addEventListener('click', () => {
 
 	let message = {
 		source: "encoder",
-		supplier 
+		supplier
 	}
 	chrome.runtime.sendMessage(message, (response) => {
 		// console.log(response.message);
@@ -42,14 +34,29 @@ decode.addEventListener('click', () => {
 	}
 
 	chrome.runtime.sendMessage(message, (response) => {
-		
-		let container = document.querySelector('.supplier-container');
+
 		let supplierText = document.querySelector('.supplier');
 		let { supplier } = response;
 
-		console.log(`the suplier came: ${ supplier }`)
+		let classes = container.className
+
+		// checks if there is a class deactivate
+		let re = /deactivate/gi;
+		let reTest = re.test(classes);
+
+		if (reTest) {
+			container.classList.remove('deactivate');
+		}
+
 		supplierText.innerHTML = supplier;
 		container.className += " active"
 
 	})
 })
+
+container.addEventListener('click', () => {
+
+	container.classList.remove("active");
+	container.className += " deactivate"
+})
+

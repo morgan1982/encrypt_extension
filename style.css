@@ -137,6 +137,11 @@ body {
 
 }
 
+.deactivate {
+	transform: translateX(-12rem);
+	animation: remove .4s ease-in;
+}
+
 
 
 
@@ -154,5 +159,21 @@ body {
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes remove {
+    0% {
+        /*opacity: 1;*/
+        transform: translateX(0);
+    }
+
+/*    80% {
+        transform: translateX(-5rem);
+    }*/
+
+    100% {
+        /*opacity: 0;*/
+        transform: translateX(-12rem);
     }
 }

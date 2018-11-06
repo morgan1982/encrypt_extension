@@ -21,11 +21,23 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 		if (!extractSupplier(res.value)) {
 
 			// put it insdide a function to use callback
-			let { cipher } = msg;
-			let encryptedText = ` \n\n "dont delete this line"\n ${ cipher } `
+			let encryption = new Promise((resolve, reject) => {
 
-			res.value += encryptedText;
-			alert("supplier is encrypted..");
+				let { cipher } = msg;
+				let encryptedText = ` \n\n "dont delete this line"\n ${ cipher } `
+
+				res.value += encryptedText;
+				if (cipher) {
+					resolve("encrypted")
+				} else {
+					reject("cannot fetch cipher");
+				}
+			})
+
+			encryption.then(() => {
+				alert("supplier is encrypted..!");
+			})
+
 		}else {
 			alert("there is a hashed string inside resolution, please use decode.")
 		}
