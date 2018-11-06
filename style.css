@@ -19,7 +19,7 @@ body {
 	outline: none;
 	text-decoration: none;
 	border: 1px solid transparent;
-	border-radius: 5px;: 
+	border-radius: 5px;:
 	cursor: pointer;
 	text-transform: uppercase;
 	/*transition: all 2s ease-out;*/
@@ -42,7 +42,7 @@ body {
 .encode:active {
 	box-shadow: none;
 	/*color: grey;*/
-	background: #80BBE2FF;		
+	background: #80BBE2FF;
 }
 
 .customSelect select {
@@ -102,6 +102,11 @@ body {
 	top: 50%;
 	right: 12px;
 	transform: translateY(-50%);
+}
+
+#select, option {
+	text-transform: uppercase;
+	font-weight: 700;
 }
 
 .supplier-container {

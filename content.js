@@ -3,7 +3,7 @@ console.log("-- inside content -- ");
 let res = document.getElementById('resolution');
 
 function extractSupplier (str) {
-	
+
 	let re = /u2f.*=/gi;
 	let supplierHash = re.exec(str);
 	return supplierHash;
@@ -19,11 +19,13 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
 		// check if there is a record to the resolution
 		if (!extractSupplier(res.value)) {
+
+			// put it insdide a function to use callback
 			let { cipher } = msg;
 			let encryptedText = ` \n\n "dont delete this line"\n ${ cipher } `
 
 			res.value += encryptedText;
-			alert("supplier is encrypted..");		
+			alert("supplier is encrypted..");
 		}else {
 			alert("there is a hashed string inside resolution, please use decode.")
 		}
