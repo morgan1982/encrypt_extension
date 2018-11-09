@@ -53,6 +53,24 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 			})
 		})
 	}
+
+	if (request.msg === "encryption_completed") {
+
+
+				let notif = {
+					type: "basic",
+					iconUrl: chrome.extension.getURL('key48.png'),
+					title: "encrypted",
+					message: 'supplier encrypted',
+					isClickable: true
+				}
+				chrome.notifications.create("123", notif )
+
+				if(sound) {
+					let notifSound = new Audio("audio/notifications.mp3");
+				}
+
+	}
 	return true
 })
 

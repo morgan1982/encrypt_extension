@@ -35,6 +35,7 @@
 	],
 	"permissions": [
 		"activeTab",
-		"*://crm.irepair.gr/*"
+		"*://crm.irepair.gr/*",
+		"notifications"
 	]
 }

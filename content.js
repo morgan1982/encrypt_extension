@@ -1,6 +1,8 @@
 console.log("-- inside content -- ");
 
 let res = document.getElementById('resolution');
+// add sounds
+let sound = null;
 
 function extractSupplier (str) {
 
@@ -28,6 +30,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 					let { cipher } = msg;
 					let encryptedText = ` \n\n "dont delete this line"\n ${ cipher } `
 
+					// sets the value to the textarea
 					res.value += encryptedText;
 					if (cipher) {
 						resolve("encrypted")
@@ -38,10 +41,14 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 			}
 
 			encryption().then(() => {
-				alert("supplier is encrypted..!");
-			})
+				// alert("supplier is encrypted..!");
+				chrome.runtime.sendMessage({
+					msg: "encryption_completed"
+					})
+				})
 
 		}else {
+			// if there is allready a hash to the res
 			alert("there is a hashed string inside resolution, please use decode.")
 		}
 
